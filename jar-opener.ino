@@ -1,13 +1,15 @@
-int mainMotor; // The motor that rotates the base of the jar
-int startButton;
+int mainMotor = 11; // The motor that rotates the base of the jar
+int startButton = 2;
 int buttonValue;
 
-int activeLED; // Will light up when the jar opener is on
-int runningLED; // Will light up when the jar opener is running
+int activeLED = 7; // Will light up when the jar opener is on
+int runningLED = 8; // Will light up when the jar opener is running
 
 bool motorRunning = false;
+
 unsigned long delayStart;
 unsigned long openingDuration;
+unsigned long startTime;
 
 void setup() {
   // Setting the pin mode to output should make the LEDs brighter
@@ -16,7 +18,7 @@ void setup() {
 
   digitalWrite(activeLED, HIGH);
 
-  startTime = millis()
+  startTime = millis();
 }
 
 void loop() {
@@ -24,11 +26,11 @@ void loop() {
 
   if (buttonValue) {
     motorRunning = !motorRunning;
-    startTime = millis()
+    startTime = millis();
   }
 
   if (motorRunning) {
-    digitalWrite(mainMotor, HIGH)
+    digitalWrite(mainMotor, HIGH);
     digitalWrite(runningLED, HIGH);
     
   } else if (!motorRunning || millis() - startTime >= openingDuration) {
